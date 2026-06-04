@@ -1,59 +1,37 @@
 # PCB-AI
 
-AI-powered PCB inspection using Computer Vision and Deep Learning.
+AI-powered computer vision system for PCB component inspection, polarity verification, and defect detection.
 
-## Overview
+## Current Progress
 
-This project focuses on automated inspection of Printed Circuit Boards (PCBs) using Artificial Intelligence and Computer Vision techniques.
+- Dataset collection completed
+- Dataset cleaning completed
+- Capacitor polarity marker classification defined
+- Data augmentation pipeline implemented
+- Images labeled into:
+  - Top
+  - Right
+  - Bottom
+  - Left
+- Stratified train/validation/test split created
 
-Current focus:
-- Capacitor polarity marker detection
-- Data augmentation for robust training
-- Component orientation analysis
+## Dataset Statistics
 
-Future scope:
-- Capacitor polarity verification
-- Component detection on full PCB images
-- Defect detection
-- Missing component identification
-- Solder joint inspection
+Original images: 218
 
-## Dataset
+Cleaned images: 174
 
-Current Dataset:
-- 218 top-view capacitor images
-- Visible polarity markers
-- Various orientations and lighting conditions
+Labeled images: 159
 
-## Project Workflow
+Classes:
+- Top: 46
+- Left: 55
+- Bottom: 33
+- Right: 25
 
-Dataset Collection
-→ Data Augmentation
-→ Marker Position Detection
-→ Orientation Classification
-→ Polarity Verification
+## Next Steps
 
-## Technologies
-
-- Python
-- OpenCV
-- NumPy
-- TensorFlow / Keras
-- Google Colab
-- GitHub
-
-## Repository Structure
-
-pcb-ai/
-├── data/
-├── notebooks/
-├── src/
-├── models/
-├── results/
-└── README.md
-
-## Status
-
-🚧 Currently working on:
-- Data augmentation pipeline
-- Capacitor marker localization
+- CNN implementation
+- Model training
+- Transfer learning using MobileNetV2
+- Evaluation and confusion matrix analysis
