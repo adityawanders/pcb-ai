@@ -1,0 +1,26 @@
+# Dataset Summary
+
+## Objective
+
+Classify capacitor polarity marker position into:
+
+- Top
+- Right
+- Bottom
+- Left
+
+## Dataset Workflow
+
+218 Images
+→ Cleaning
+→ 174 Images
+→ Labeling
+→ 159 Images
+→ Stratified Split
+
+## Final Class Distribution
+
+Top: 46
+Left: 55
+Bottom: 33
+Right: 25
