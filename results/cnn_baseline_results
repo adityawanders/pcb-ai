@@ -1,0 +1,35 @@
+# Baseline CNN Results
+
+Dataset:
+- Train: 127
+- Validation: 16
+- Test: 16
+
+Architecture:
+- Conv2D(32)
+- Conv2D(64)
+- Conv2D(128)
+- GlobalAveragePooling2D
+- Dense(64)
+- Dense(4)
+
+Performance:
+- Validation Accuracy: 68.75%
+- Test Accuracy: 81.25%
+
+Class-wise Performance:
+Bottom:
+- Precision: 1.00
+- Recall: 0.50
+
+Left:
+- Precision: 0.71
+- Recall: 1.00
+
+Right:
+- Precision: 0.67
+- Recall: 0.67
+
+Top:
+- Precision: 1.00
+- Recall: 1.00
