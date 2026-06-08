@@ -1,0 +1,28 @@
+Baseline CNN:
+- Implemented custom CNN architecture
+- Used Conv2D, MaxPooling, GlobalAveragePooling2D, and Dense layers
+- Trained and evaluated model
+- Generated confusion matrix and classification report
+- Achieved 81.25% test accuracy
+
+MobileNetV2 Transfer Learning:
+- Implemented frozen MobileNetV2 feature extractor
+- Added custom classification head
+- Evaluated performance and analyzed errors
+- Achieved 68.75% test accuracy
+
+MobileNetV2 Fine-Tuning:
+- Unfroze final MobileNetV2 layers
+- Recompiled with low learning rate (1e-5)
+- Trained and evaluated fine-tuned model
+- Achieved 75.0% test accuracy
+
+Analysis:
+- Compared CNN, frozen MobileNetV2, and fine-tuned MobileNetV2
+- Generated confusion matrices and classification reports
+- Investigated incorrect predictions and model confidence
+- Observed that the custom CNN generalized best on the test set
+
+Current Best Model:
+- Baseline CNN
+- Test Accuracy: 81.25%
