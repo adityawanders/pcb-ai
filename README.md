@@ -29,6 +29,21 @@ Classes:
 - Bottom: 33
 - Right: 25
 
+  ## Experiment Results
+
+| Model | Validation Accuracy | Test Accuracy |
+|---------|---------|---------|
+| CNN | 68.75% | 81.25% |
+| MobileNetV2 (Frozen) | 87.50% | 68.75% |
+| MobileNetV2 (Fine-Tuned) | 68.75% | 75.00% |
+
+### Key Findings
+
+- Custom CNN achieved the best test accuracy.
+- MobileNetV2 showed signs of overfitting due to limited dataset size.
+- Fine-tuning improved MobileNetV2 test performance from 68.75% to 75.00%.
+- Class imbalance affected performance, particularly for the Right class.
+
 ## Next Steps
 
 - CNN implementation
