@@ -1,0 +1,40 @@
+# Capacitor Polarity Classification - Experiment Results
+
+## Dataset
+
+- Total labeled images: 159
+- Classes: Top, Bottom, Left, Right
+- Train: 127 images
+- Validation: 16 images
+- Test: 16 images
+
+## Model Comparison
+
+| Model | Validation Accuracy | Test Accuracy |
+|---------|---------|---------|
+| CNN | 68.75% | 81.25% |
+| MobileNetV2 (Frozen) | 87.50% | 68.75% |
+| MobileNetV2 (Fine-Tuned) | 68.75% | 75.00% |
+
+## Key Findings
+
+- Custom CNN achieved the best test accuracy (81.25%).
+- MobileNetV2 achieved strong validation accuracy but did not generalize as well on the test set.
+- Fine-tuning MobileNetV2 improved test accuracy from 68.75% to 75.00%.
+- Class imbalance affected performance, particularly for the Right class.
+- Analysis of confusion matrices showed that several errors occurred on boundary cases where marker orientation was ambiguous.
+- For this dataset size, the simpler CNN generalized better than the larger transfer-learning model.
+
+## Current Best Model
+
+CNN
+
+Test Accuracy: 81.25%
+
+## Next Steps
+
+- Increase labeled dataset size
+- Improve class balance
+- Further MobileNetV2 fine-tuning experiments
+- Evaluate additional architectures (EfficientNet, ResNet)
+- Build inference pipeline for real-world prediction
