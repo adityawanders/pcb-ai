@@ -1,0 +1,6 @@
+Dataset Preparation:
+- Cleaned original capacitor image dataset
+- Removed unusable/blurry samples
+- Manually labeled 159 images into Top, Bottom, Left, and Right classes
+- Created stratified train/validation/test split (127/16/16)
+- Organized dataset for TensorFlow image classification workflow
