@@ -1,0 +1,31 @@
+Rotation Testing and Real-World Evaluation
+
+After training the CNN model on the 159-image dataset, I tested the model on several completely new capacitor images that were not part of the training data.
+
+The model was able to correctly identify some unseen capacitors with high confidence. For example, several new capacitor images were classified as Top with confidence values above 80%. This shows that the model has learned some useful features and is not simply memorizing the training images.
+
+However, additional testing revealed limitations. To verify whether the model had actually learned capacitor orientation, I performed a rotation test. The same capacitor image was rotated by 90°, 180°, and 270°, and predictions were recorded for each rotation.
+
+Ideally, the predicted class should change according to the rotation. Instead, the model often predicted the same class regardless of image rotation. Although the confidence values changed, the predicted label frequently remained unchanged.
+
+For Example:
+0°   -> Top
+90°  -> Top
+180° -> Top
+270° -> Top
+
+This suggests that the model is using capacitor appearance, color, shape, and other visual features in addition to the polarity marker position.
+
+Another observation was that in several incorrect predictions, the correct orientation appeared as the second-highest probability. This indicates that the model has learned partial orientation information but is not yet robust enough to consistently distinguish between neighboring classes.
+
+Conclusions
+The CNN can classify some unseen capacitor images correctly.
+Confidence scores are meaningful and decrease when the model is uncertain.
+The model struggles to consistently respond to image rotations.
+The polarity marker orientation is not yet the dominant feature used by the model.
+More diverse training images and improved labeling consistency may be required.
+Next Steps
+Train MobileNetV2 on the 193-image dataset.
+Continue collecting new capacitor images.
+Perform additional real-world testing.
+Investigate Grad-CAM visualization to understand which regions of the image influence predictions.
