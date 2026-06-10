@@ -1,0 +1,168 @@
+# Experiment Results – 193 Image Dataset
+
+## Objective
+
+Evaluate whether increasing the dataset size from 159 labeled images to 193 labeled images improves capacitor polarity orientation classification.
+
+---
+
+## Dataset
+
+### Previous Dataset
+
+* Total Images: 159
+* Classes: Top, Bottom, Left, Right
+* Stratified Split:
+
+  * Train: 127
+  * Validation: 16
+  * Test: 16
+
+### New Dataset
+
+* Total Images: 193
+* Classes: Top, Bottom, Left, Right
+* Distribution:
+
+| Class  | Total Images |
+| ------ | -----------: |
+| Left   |           61 |
+| Top    |           53 |
+| Bottom |           42 |
+| Right  |           37 |
+
+* Train: 151
+* Validation: 21
+* Test: 21
+
+---
+
+## Model Architecture
+
+Custom CNN:
+
+* Rescaling
+* Conv2D (32)
+* MaxPooling2D
+* Conv2D (64)
+* MaxPooling2D
+* Conv2D (128)
+* MaxPooling2D
+* GlobalAveragePooling2D
+* Dense (64)
+* Dense (4)
+
+Total Trainable Parameters: 101,764
+
+---
+
+## Experiments
+
+### Experiment 1 – CNN with Class Weights
+
+Class weights were applied to compensate for class imbalance.
+
+Result:
+
+* Validation Accuracy: ~28.6%
+* Test Accuracy: 33.3%
+
+Observation:
+
+* Performance decreased significantly.
+* Class weighting negatively affected training on the small dataset.
+
+---
+
+### Experiment 2 – CNN without Class Weights
+
+Result:
+
+* Validation Accuracy: ~47.6%
+* Test Accuracy: 47.6%
+
+Observation:
+
+* Better than the weighted model.
+* Still significantly lower than the previous 159-image experiment.
+
+---
+
+## Confusion Matrix Analysis
+
+Key observation:
+
+* Right class recall = 0.00
+* Model rarely predicted the Right class.
+* Most errors occurred between neighboring orientation classes.
+
+Example misclassifications:
+
+* Bottom → Left
+* Right → Left
+* Right → Top
+
+---
+
+## Possible Reasons for Reduced Accuracy
+
+### 1. Ambiguous Orientation Boundaries
+
+Many capacitor images lie between cardinal directions.
+
+Example:
+
+* Between Top and Right
+* Between Bottom and Left
+
+Such images can be interpreted differently during labeling.
+
+---
+
+### 2. Increased Dataset Difficulty
+
+The new dataset contains:
+
+* More lighting variation
+* Different capacitor colors
+* Different viewing angles
+* More challenging real-world samples
+
+The original 159-image dataset was more consistent.
+
+---
+
+### 3. Small Dataset Size
+
+Although the dataset increased to 193 images, each class still contains relatively few samples.
+
+Example:
+
+* Right class: 37 images
+
+This may be insufficient for robust generalization.
+
+---
+
+## Evidence Collected
+
+* Training/validation accuracy curves
+* Test accuracy values
+* Confusion matrix
+* Classification report
+* Incorrect prediction visualizations
+
+---
+
+## Conclusion
+
+Increasing the dataset from 159 to 193 images did not improve CNN performance.
+
+The results suggest that dataset quality and label consistency may be more important than simply increasing the number of samples.
+
+Future work:
+
+1. Review orientation labels.
+2. Collect more real-world capacitor images.
+3. Train MobileNetV2 on the 193-image dataset.
+4. Test on completely unseen capacitor photographs.
