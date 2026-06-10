@@ -1,0 +1,83 @@
+
+## Custom CNN (193 Image Dataset)
+Dataset
+Total Images: 193
+Original 159 labeled images
+Additional manually labeled capacitor images
+
+Class Distribution:
+Bottom : 42
+Left   : 61
+Right  : 37
+Top    : 53
+
+Test Accuracy:
+
+47.62%
+Confusion Matrix:
+
+[[2 3 0 1]
+ [1 4 0 0]
+ [1 2 0 1]
+ [0 2 0 4]]
+
+Observations
+Accuracy dropped significantly after increasing the dataset size.
+The model struggled to learn the Right class.
+Several misclassifications occurred between neighboring orientations.
+Rotation testing showed that the model often ignored image rotation.
+Inference
+
+The simple CNN architecture was unable to generalize well on the more diverse dataset. Increasing the dataset size alone did not improve performance.
+
+## MobileNetV2 (Frozen)
+Test Accuracy:
+
+76.19%
+Confusion Matrix:
+
+[[5 0 0 1]
+ [0 5 0 0]
+ [0 1 3 0]
+ [0 1 2 3]]
+
+Observations
+Large improvement over the custom CNN on the 193-image dataset.
+Successfully learned the Right class.
+Produced more meaningful confidence scores.
+Showed partial orientation awareness during rotation testing.
+Performance remained stable on several unseen capacitor images.
+Inference
+
+Transfer learning significantly improved performance. The pretrained MobileNetV2 features generalized much better than the custom CNN.
+
+## MobileNetV2 (Fine-Tuned)
+Configuration
+Last MobileNetV2 layers unfrozen
+Learning Rate: 1e-5
+Early Stopping enabled
+
+Test Accuracy:
+
+76.19%
+Confusion Matrix:
+
+[[5 0 0 1]
+ [0 5 0 0]
+ [0 1 3 0]
+ [0 1 2 3]]
+
+Observations
+Fine-tuning did not improve accuracy.
+Confusion matrix remained unchanged.
+Class performance remained unchanged.
+Inference
+
+The dataset size is likely the primary limitation. MobileNetV2 had already extracted most useful information from the available training data, and additional fine-tuning provided no measurable benefit.
+
+Overall Conclusions
+Transfer learning substantially outperformed a custom CNN architecture.
+Increasing dataset size alone did not guarantee better performance.
+MobileNetV2 achieved the best balance between accuracy and generalization.
+Rotation testing revealed that orientation learning remains imperfect and can be affected by capacitor symmetry.
+The current bottleneck is dataset diversity and size rather than model architecture.
