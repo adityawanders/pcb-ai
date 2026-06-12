@@ -1,0 +1,39 @@
+### 5.X Model Comparison and Interpretation
+
+Several deep learning architectures were evaluated for capacitor polarity classification using the same augmented dataset. The models were compared based on Test Accuracy, Macro F1 Score, Test Loss, training configuration, and class-wise performance.
+
+| Model          | Input Size | Epochs | Training Images | Accuracy (%) | Macro F1 (%) | Loss   |
+| -------------- | ---------- | ------ | --------------- | ------------ | ------------ | ------ |
+| EfficientNetB0 | 224 × 224  | 17     | 2945            | 78.95        | 77.67        | 1.2998 |
+| CNN_V3         | 224 × 224  | 21     | 2945            | 78.95        | 77.38        | 1.6065 |
+| CNN_V2         | 224 × 224  | 16     | 27              | 74.07        | 72.64        | 1.0568 |
+| CNN_V1         | 224 × 224  | 16     | 27              | 74.07        | 73.39        | 1.3383 |
+| MobileNetV2    | 224 × 224  | 25     | 2945            | 73.68        | 71.02        | 1.8689 |
+
+#### EfficientNetB0
+
+EfficientNetB0 achieved the highest overall performance with an accuracy of 78.95% and a Macro F1 Score of 77.67%. The model utilizes compound scaling, which balances network depth, width, and resolution efficiently. This enables the extraction of rich image features while maintaining computational efficiency. The model performed exceptionally well on the Left (91%) and Right (86%) classes, demonstrating strong capability in learning capacitor orientation patterns. Due to its balanced performance across all classes, EfficientNetB0 was selected as the final model for the system.
+
+#### CNN_V3
+
+CNN_V3 achieved the same test accuracy as EfficientNetB0 (78.95%) with a slightly lower Macro F1 Score of 77.38%. This indicates that while the model classified most samples correctly, its class-wise balance was marginally weaker. Nevertheless, CNN_V3 demonstrated that a carefully designed custom CNN can compete with advanced transfer learning architectures.
+
+#### CNN_V2
+
+CNN_V2 achieved an accuracy of 74.07% and a Macro F1 Score of 72.64%. Although the model achieved the lowest loss among all models, its classification performance was lower than EfficientNetB0 and CNN_V3. This suggests that minimizing loss alone does not necessarily guarantee better classification accuracy.
+
+#### CNN_V1
+
+CNN_V1 served as the baseline convolutional neural network architecture. The model achieved 74.07% accuracy and a Macro F1 Score of 73.39%. While its performance was acceptable, the simpler architecture was unable to learn highly discriminative features compared to deeper networks.
+
+#### MobileNetV2
+
+MobileNetV2 achieved 73.68% accuracy and a Macro F1 Score of 71.02%, making it the lowest-performing model among the evaluated architectures. Although MobileNetV2 is widely used for lightweight mobile applications, its feature representations were less effective for the capacitor polarity dataset. The relatively high loss value further indicates weaker generalization compared to the other models.
+
+### Class-wise Analysis
+
+The class-wise F1 scores revealed that the Left and Right orientations were consistently easier to classify across all models. In contrast, the Bottom orientation exhibited the lowest F1 scores, suggesting that images belonging to this class contained visual characteristics that were more difficult to distinguish. This indicates that additional training samples or targeted augmentation techniques for the Bottom class may improve future performance.
+
+### Final Model Selection
+
+Based on overall accuracy, Macro F1 Score, and balanced class-wise performance, EfficientNetB0 was selected as the final model. The model provided the best trade-off between classification accuracy and generalization capability, making it suitable for deployment in the PCB capacitor polarity detection system.
