@@ -1,0 +1,70 @@
+| Rank | Model          | Accuracy (%) | Macro F1 (%) | Loss   |
+| ---- | -------------- | ------------ | ------------ | ------ |
+| 🥇   | EfficientNetB0 | 78.95        | 77.67        | 1.2998 |
+| 🥈   | CNN_V3         | 78.95        | 77.38        | 1.6065 |
+| 🥉   | CNN_V2         | 74.07        | 72.64        | 1.0568 |
+| 4    | CNN_V1         | 74.07        | 73.39        | 1.3383 |
+| 5    | MobileNetV2    | 73.68        | 71.02        | 1.8689 |
+
+Best Performing Model
+
+The EfficientNetB0 model achieved the best overall performance with:
+
+Accuracy = 78.95%
+Macro F1 Score = 77.67%
+Training Images = 2945
+Epochs = 17
+
+| Class  | F1 Score |
+| ------ | -------- |
+| Bottom | 57%      |
+| Left   | 91%      |
+| Right  | 86%      |
+| Top    | 77%      |
+
+The model showed strong performance in detecting Left and Right capacitor orientations but comparatively lower performance on the Bottom class.
+
+Comparison with Other Models
+CNN_V3
+Accuracy: 78.95%
+Macro F1: 77.38%
+
+CNN_V3 achieved the same accuracy as EfficientNetB0 but a slightly lower Macro F1 score, indicating slightly poorer balance across classes.
+
+CNN_V2
+Accuracy: 74.07%
+Macro F1: 72.64%
+
+CNN_V2 improved over CNN_V1 in some classes but was less consistent overall.
+
+CNN_V1
+Accuracy: 74.07%
+Macro F1: 73.39%
+
+CNN_V1 served as the baseline CNN architecture and demonstrated reasonable performance despite having fewer parameters.
+
+MobileNetV2
+Accuracy: 73.68%
+Macro F1: 71.02%
+
+Although MobileNetV2 is a powerful transfer learning architecture, it achieved the lowest overall performance on this dataset.
+
+Observations
+Transfer learning did not always outperform custom CNNs.
+EfficientNetB0 achieved the best balance between accuracy and class-wise performance.
+Left and Right orientations were easier to classify than Bottom orientations.
+The Bottom class consistently produced lower F1 scores across models, indicating higher confusion.
+Data augmentation improved generalization and reduced overfitting.
+Conclusion
+
+Among all evaluated models, EfficientNetB0 produced the best overall results with 78.95% accuracy and 77.67% Macro F1 score. Although CNN_V3 achieved identical accuracy, EfficientNetB0 provided slightly better class-balanced performance. Therefore, EfficientNetB0 was selected as the final model for capacitor polarity classification in the proposed PCB-AI system.
+
+For your GitHub README or internship report, I would include:
+
+Final Model Selected: EfficientNetB0
+Accuracy: 78.95%
+Macro F1 Score: 77.67%
+Training Images: 2945
+Classes: Bottom, Left, Right, Top
+Best Class: Left (F1 = 91%)
+Most Challenging Class: Bottom (F1 = 57%)
