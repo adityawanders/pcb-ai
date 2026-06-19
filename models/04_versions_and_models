@@ -1,0 +1,51 @@
+MobileNetV3 Family Development
+Why MobileNetV3 Was Selected
+
+MobileNetV3 was selected as a transfer learning candidate due to its lightweight architecture and strong performance on image classification tasks. The model is specifically designed to provide a balance between computational efficiency and classification accuracy. Since the capacitor polarity dataset was relatively small, transfer learning offered the advantage of leveraging features learned from large-scale image datasets while reducing training time and computational requirements.
+
+MobileNetV3 (Initial Version)
+
+The initial MobileNetV3 model served as the first transfer learning baseline. The model was trained using the cleaned and augmented dataset and achieved a test accuracy of 78.26%, Macro F1 Score of 67%, and test loss of 1.3033.
+
+Although the overall accuracy was competitive, class-wise analysis revealed significant imbalance. The model achieved excellent performance on the Right class (100% F1 Score) but completely failed to classify the Bottom class (0% F1 Score). This indicated that the model was overfitting to dominant visual patterns and was not generalizing effectively across all classes.
+MobileNetV3.1
+
+To improve class balance and generalization, MobileNetV3.1 introduced stronger regularization techniques.
+
+Changes made compared to MobileNetV3
+
+Increased dropout to 0.5 and 0.4
+Added L2 regularization (0.001)
+Retained transfer learning architecture
+Continued training on the cleaned and augmented dataset
+
+The intention was to reduce overfitting and encourage more robust feature learning. However, the stronger regularization resulted in underfitting. The model achieved only 65.22% accuracy and 58% Macro F1 Score, making it the weakest MobileNetV3 variant.
+Although regularization reduced overfitting, it also limited the model's ability to learn discriminative features effectively.
+MobileNetV3.2
+
+Based on observations from MobileNetV3.1, the architecture was refined to achieve a better balance between regularization and learning capacity.
+
+Changes made compared to MobileNetV3.1
+
+Reduced dropout from 0.5/0.4 to 0.4/0.3
+Removed L2 regularization
+Fine-tuned training configuration
+Optimized transfer learning setup
+
+These modifications significantly improved both overall accuracy and class-wise balance.
+
+The final MobileNetV3.2 model achieved:
+
+82.61% Accuracy
+80% Macro F1 Score
+0.8961 Test Loss
+
+This represented a substantial improvement over both previous MobileNetV3 variants.
+
+ResNet50V2
+
+ResNet50V2 was evaluated as a deeper transfer learning architecture utilizing residual connections. Unlike conventional convolutional networks, ResNet architectures use skip connections that allow gradients to propagate efficiently through deeper layers, improving feature extraction and training stability.
+
+The model achieved the highest overall performance among all evaluated architectures.
+
+ResNet50V2 matched the accuracy of MobileNetV3.2 but achieved a higher Macro F1 Score and lower test loss. The improvement in Bottom class performance (66.67% F1 Score) contributed significantly to the stronger overall balance across all classes.
