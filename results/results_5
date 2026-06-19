@@ -1,0 +1,119 @@
+## Model Ranking
+
+| Rank | Model          | Accuracy (%) | Macro F1 (%) | Loss   |
+| ---- | -------------- | ------------ | ------------ | ------ |
+| 🥇   | ResNet50V2     | 82.61        | 81.45        | 0.7500 |
+| 🥈   | MobileNetV3.2  | 82.61        | 80.00        | 0.8961 |
+| 🥉   | EfficientNetB0 | 78.95        | 77.67        | 1.2998 |
+| 4    | CNN_V3         | 78.95        | 77.38        | 1.6065 |
+| 5    | MobileNetV3    | 78.26        | 67.00        | 1.3033 |
+| 6    | CNN_V1         | 74.07        | 73.39        | 0.9833 |
+| 7    | CNN_V2         | 74.07        | 72.64        | 1.3383 |
+| 8    | MobileNetV2    | 73.68        | 71.02        | 1.8689 |
+| 9    | MobileNetV3.1  | 65.22        | 58.00        | 1.2186 |
+
+## Best Performing Model
+
+The ResNet50V2 model achieved the best overall performance with:
+
+* Accuracy = 82.61%
+* Macro F1 Score = 81.45%
+* Training Images = 2888
+* Epochs = 9
+
+| Class  | F1 Score |
+| ------ | -------- |
+| Bottom | 66.67%   |
+| Left   | 92%      |
+| Right  | 91%      |
+| Top    | 80%      |
+
+The model demonstrated strong and balanced performance across all capacitor orientations. In particular, it achieved the highest Bottom-class F1 score among the top-performing models, indicating better generalization on the most challenging class.
+
+## Comparison with Other Models
+
+### MobileNetV3.2
+
+* Accuracy: 82.61%
+* Macro F1: 80.00%
+* Loss: 0.8961
+
+MobileNetV3.2 achieved the same accuracy as ResNet50V2 while maintaining excellent performance on the Left and Right classes. Compared to earlier MobileNetV3 variants, improvements in regularization and training configuration significantly increased overall performance. However, its lower Bottom-class F1 score (57%) resulted in a slightly lower Macro F1 score than ResNet50V2.
+
+### EfficientNetB0
+
+* Accuracy: 78.95%
+* Macro F1: 77.67%
+* Loss: 1.2998
+
+EfficientNetB0 previously served as the best-performing model before the introduction of MobileNetV3.2 and ResNet50V2. The model demonstrated strong feature extraction capability and balanced class-wise performance. It achieved particularly strong results on the Left (91%) and Right (86%) classes, making it one of the most reliable transfer learning architectures evaluated.
+
+### CNN_V3
+
+* Accuracy: 78.95%
+* Macro F1: 77.38%
+* Loss: 1.6065
+
+CNN_V3 was the strongest custom CNN architecture developed in this project. Through the addition of dropout and L2 regularization, the model achieved performance comparable to EfficientNetB0 despite having significantly fewer parameters and no pre-trained weights.
+
+### MobileNetV3
+
+* Accuracy: 78.26%
+* Macro F1: 67.00%
+* Loss: 1.3033
+
+The initial MobileNetV3 implementation achieved competitive accuracy but exhibited severe class imbalance. While it achieved perfect classification performance on the Right class (100% F1 Score), it completely failed to classify Bottom samples (0% F1 Score), resulting in a reduced Macro F1 score.
+
+### MobileNetV3.1
+
+* Accuracy: 65.22%
+* Macro F1: 58.00%
+* Loss: 1.2186
+
+MobileNetV3.1 introduced stronger regularization through increased dropout and L2 regularization. While the intention was to reduce overfitting, the model became overly constrained and underfit the training data. This resulted in the lowest overall performance among the evaluated transfer learning models.
+
+### MobileNetV3.2 Improvements
+
+The MobileNetV3 architecture underwent multiple iterations during experimentation:
+
+**MobileNetV3 → MobileNetV3.1**
+
+* Increased dropout from lighter regularization to 0.5 / 0.4
+* Added L2 regularization (0.001)
+* Goal: Reduce overfitting and improve generalization
+
+**MobileNetV3.1 → MobileNetV3.2**
+
+* Reduced dropout to 0.4 / 0.3
+* Removed L2 regularization
+* Refined training configuration
+* Improved balance between learning capacity and regularization
+
+These modifications increased Macro F1 Score from 58% to 80% and improved accuracy from 65.22% to 82.61%.
+
+## Observations
+
+* Transfer learning models consistently outperformed baseline CNN architectures.
+* ResNet50V2 achieved the best overall balance between accuracy, loss, and class-wise performance.
+* MobileNetV3.2 demonstrated that careful regularization tuning can significantly improve model performance.
+* EfficientNetB0 remained a strong performer despite being surpassed by newer architectures.
+* Left and Right capacitor orientations were consistently easier to classify across all models.
+* Bottom orientation remained the most challenging class and contributed most of the classification errors.
+* Applying data augmentation exclusively to the training set improved model generalization while preventing data leakage.
+* Macro F1 score proved to be a more informative metric than accuracy alone when evaluating class balance.
+
+## Conclusion
+
+Among all evaluated architectures, ResNet50V2 produced the strongest overall results with 82.61% accuracy, 81.45% Macro F1 Score, and the lowest loss among the top-performing models. Although MobileNetV3.2 achieved identical accuracy, ResNet50V2 demonstrated superior class balance and stronger performance on the challenging Bottom orientation class.
+
+Therefore, ResNet50V2 was selected as the final model for capacitor polarity classification in the PCB-AI system.
+
+### Final Model Selected
+
+* Final Model: ResNet50V2
+* Accuracy: 82.61%
+* Macro F1 Score: 81.45%
+* Training Images: 2888
+* Classes: Bottom, Left, Right, Top
+* Best Class: Left (F1 = 92%)
+* Most Challenging Class: Bottom (F1 = 66.67%)
